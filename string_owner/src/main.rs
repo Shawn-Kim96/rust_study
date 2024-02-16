@@ -10,16 +10,16 @@ fn first_word(s: &String) -> &str {
     &s[..]
 }
 
-fn second_word(s: &String) -> &str {
+fn second_word_1(s: &String) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-            let second_bytes = &s[i..].as_bytes();
+            let second_bytes = &s[i+1..].as_bytes();
 
             for (j, &item_2) in second_bytes.iter().enumerate() {
                 if item_2 == b' ' {
-                    return &s[i..j+i]
+                    return &s[i+1..j+i+1]
                 } else {
                     return ""
                 }
@@ -28,6 +28,7 @@ fn second_word(s: &String) -> &str {
     }
     ""
 }
+
 
 fn second_word_2(s: &String) -> &str {
     let bytes = s.as_bytes();
@@ -66,10 +67,12 @@ fn main() {
     // println!("{s1_result}, {s2_result}");
     // println!("{s1_second_result}, {s2_second_result}");
 
-    let s = String::from("hello world");
+    let s = String::from("hello  world");
     
-    let word = first_word(&s);
+    let word1 = first_word(&s);
+    let word2 = second_word_1(&s);
+    let word3 = second_word_2(&s);
     
-    println!("{word}")
+    println!("{word1}, {word2}, {word3}")
 
 }
